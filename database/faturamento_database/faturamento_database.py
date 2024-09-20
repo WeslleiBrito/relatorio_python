@@ -8,9 +8,10 @@ import math
 
 
 class FaturamentoDatabase:
-    def __init__(self, host_name: str = "servidorBalcao", data_inicial: str = "", data_final: str = ""):
+    def __init__(self, host_name: str = "servidorBalcao", data_inicial: str = "", data_final: str = "",
+                 comissao: float = 1):
         self.__conn = conecta_banco(host_name)
-
+        self.__comissao = comissao / 100
         if not data_inicial and not data_final:
             self.__condicional = f'venda_item.dtvenda = "{date.today()}"'
         elif data_inicial and not data_final:
@@ -74,8 +75,13 @@ class FaturamentoDatabase:
                     "vendedor": item["vendedor"],
                     "quantidade": item["quantidade"],
                     "descricao": item["descricao"],
-                    "custo": item["custo"],
                     "faturamento": item["faturamento"],
+                    "custo": item["custo"],
+                    "comissao": round(item["faturamento"] * self.__comissao, 2) if
+                    (item["custo"] +
+                     item["despesa_variavel"] +
+                     item["despesa_fixa"] +
+                     item["faturamento"] * self.__comissao) < item["faturamento"] else 0.00,
                     "despesa_variavel": round(item["despesa_variavel"], 2),
                     "despesa_fixa": item["despesa_fixa"],
                     "data_venda": item["data_venda"]

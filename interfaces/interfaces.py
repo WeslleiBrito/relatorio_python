@@ -34,6 +34,7 @@ class InterfaceFaturamento(TypedDict):
     descricao: str
     custo: float
     faturamento: float
+    comissao: float
     despesa_fixa: float
     despesa_variavel: float
     data_venda: date
