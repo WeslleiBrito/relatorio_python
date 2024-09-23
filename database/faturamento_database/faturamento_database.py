@@ -68,7 +68,7 @@ class FaturamentoDatabase:
             cursor.execute(query)
             resultado = cursor.fetchall()
 
-            return [
+            resultado = [
                 cast(InterfaceFaturamento, {
                     "codigo": item["codigo"],
                     "venda": item["venda"],
@@ -88,6 +88,8 @@ class FaturamentoDatabase:
                 })
                 for item in resultado
             ]
+
+            return resultado
 
         except mysql.connector.Error as err:
             print(f"Erro ao acessar o banco de dados: {err}")

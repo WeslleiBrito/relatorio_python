@@ -40,6 +40,12 @@ class InterfaceFaturamento(TypedDict):
     data_venda: date
 
 
+class InterfaceFaturamentoItem(InterfaceFaturamento):
+    custo_despesa: float
+    lucro_rs: float
+    lucro_porcentagem: float
+
+
 class InterfaceValoresGlobal(TypedDict):
     id: str
     invoicing: float
