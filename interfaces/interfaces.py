@@ -1,4 +1,4 @@
-from typing import TypedDict
+from typing import TypedDict, List
 from datetime import datetime, date
 
 
@@ -60,3 +60,25 @@ class InterfaceValoresGlobal(TypedDict):
     general_monetary_profit: float
     general_percentage_profit: float
     number_of_months: int
+
+
+class InterfaceResumo(TypedDict):
+    faturamento: float
+    custo: float
+    despesa_fixa: float
+    despesa_variavel: float
+    comissao: float
+    negativo: float
+    lucro_rs: float
+    lucro_percentual: float
+
+
+class InterfacePeriodoApuracao(TypedDict):
+    data_inicial: str
+    data_final: str
+
+
+class InterfaceVendaItemCompleto(TypedDict):
+    dados_unitarios: List[InterfaceFaturamentoItem]
+    resumo: InterfaceResumo
+    periodo_apuracao: InterfacePeriodoApuracao

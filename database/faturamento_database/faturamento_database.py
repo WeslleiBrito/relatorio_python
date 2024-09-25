@@ -8,21 +8,10 @@ import math
 
 
 class FaturamentoDatabase:
-    def __init__(self, host_name: str = "servidorBalcao", data_inicial: str = "", data_final: str = "",
-                 comissao: float = 1):
+    def __init__(self, condicao_busca: str, host_name: str = "servidorBalcao", comissao: float = 1):
         self.__conn = conecta_banco(host_name)
         self.__comissao = comissao / 100
-        if not data_inicial and not data_final:
-            self.__condicional = f'venda_item.dtvenda = "{date.today()}"'
-        elif data_inicial and not data_final:
-            self.__condicional = f'venda_item.dtvenda >= "{validar_data(data_inicial)}"'
-        elif not data_inicial and data_final:
-            self.__condicional = f'venda_item.dtvenda <= "{validar_data(data_final)}"'
-        else:
-            self.__condicional = (
-                f'venda_item.dtvenda >= "{validar_data(data_inicial)}" '
-                f'AND venda_item.dtvenda <= "{validar_data(data_final)}"'
-            )
+        self.__condicional = condicao_busca
 
     @property
     def busca_venda_item(self):
@@ -102,6 +91,6 @@ class FaturamentoDatabase:
 
 
 if __name__ == "__main__":
-    busca = FaturamentoDatabase()
+    busca = FaturamentoDatabase(condicao_busca=f'venda_item.dtvenda <= "2024-09-24"')
     for produto in busca.busca_venda_item:
         print(produto)
