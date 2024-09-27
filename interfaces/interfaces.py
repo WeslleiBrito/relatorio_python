@@ -6,6 +6,7 @@ class InterfaceSubgrupoBasica(TypedDict):
     codigo: int
     descricao: str
     despesa_fixa: float
+    lucro_subgrupo_padrao: float
 
 
 class InterfaceSubgrupoCompleta(InterfaceSubgrupoBasica):
