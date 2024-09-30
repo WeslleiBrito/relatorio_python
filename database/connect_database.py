@@ -30,4 +30,3 @@ if __name__ == '__main__':
     con = conecta_banco()
     print('Conexão bem sucedida')
     con.close()
-    

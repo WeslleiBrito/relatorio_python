@@ -83,3 +83,17 @@ class InterfaceVendaItemCompleto(TypedDict):
     dados_unitarios: List[InterfaceFaturamentoItem]
     resumo: InterfaceResumo
     periodo_apuracao: InterfacePeriodoApuracao
+
+
+class InterfaceFormacaoPrecoVendaDatabase(TypedDict):
+    nota_fiscal: str
+    data: date
+    total_nota: float
+    nome_fornecedor: float
+    quantidade: float
+    descricao: str
+    fracao: float
+    custo: float
+    despesa_fixa: float
+    desconto_subgrupo: float
+    lucro_subgrupo: float
